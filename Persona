@@ -1,0 +1,113 @@
+abstract class Persona {
+
+    int NroID;
+    int tipoID;
+    String nombres;
+    String apellidos;
+    int direccion;
+
+    public Persona(int NroID, int tipoID, String nombres, String apellidos, int direccion) {
+        this.NroID = NroID;
+        this.tipoID = tipoID;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.direccion = direccion;
+    }
+
+    public abstract void consultarinfoPersonal();
+}
+
+class Universidad extends Persona {
+
+    String NIT;
+    String Nombre;
+    String Direccion;
+
+    public Universidad(int NroID, int tipoID, String nombres, String apellidos, int direccion, String NIT, String Nombre, String Direccion) {
+        super(NroID, tipoID, nombres, apellidos, direccion);
+        this.NIT = NIT;
+        this.Nombre = Nombre;
+        this.Direccion = Direccion;
+    }
+
+    @Override
+    public void consultarinfoPersonal() {
+        System.out.println("Información de la universidad:");
+        System.out.println("NIT: " + NIT);
+        System.out.println("Nombre: " + Nombre);
+        System.out.println("Dirección: " + Direccion);
+    }
+}
+
+
+class Docente extends Persona {
+
+    int escalafon;
+
+    public Docente(int NroID, int tipoID, String nombres, String apellidos, int direccion, int escalafon) {
+        super(NroID, tipoID, nombres, apellidos, direccion);
+        this.escalafon = escalafon;
+    }
+
+    @Override
+    public void consultarinfoPersonal() {
+        System.out.println("Información del Docente:");
+        System.out.println("Nombre: " + nombres + " " + apellidos);
+        System.out.println("Escalafón: " + escalafon);
+    }
+}
+
+class Estudiante extends Persona {
+    String codigo;
+
+    public Estudiante(int NroID, int tipoID, String nombres, String apellidos, int direccion, String codigo) {
+        super(NroID, tipoID, nombres, apellidos, direccion);
+        this.codigo = codigo;
+    }
+
+    @Override
+    public void consultarinfoPersonal() {
+        System.out.println("Información del Estudiante:");
+        System.out.println("Nombre: " + nombres + " " + apellidos);
+        System.out.println("Código: " + codigo);
+    }
+
+    public boolean pagarMatricula() {
+        return true; 
+    }
+}
+
+class Administrativo extends Persona {
+    int salario;
+
+    public Administrativo(int NroID, int tipoID, String nombres, String apellidos, int direccion, int salario) {
+        super(NroID, tipoID, nombres, apellidos, direccion);
+        this.salario = salario;
+    }
+
+    @Override
+    public void consultarinfoPersonal() {
+        System.out.println("Información del Administrativo:");
+        System.out.println("Nombre: " + nombres + " " + apellidos);
+        System.out.println("Salario: " + salario);
+    }
+
+    public void generarListadoEstudiantes() {
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Universidad universidad = new Universidad(0, 0, null, null, 0, "123456789", "Universidad Manuela Beltrán", "Circunvalar");
+        universidad.consultarinfoPersonal();
+
+        Docente docente = new Docente(1, 1, "Juan", "Perez", 12345, 3);
+        docente.consultarinfoPersonal();
+
+        Estudiante estudiante = new Estudiante(2, 1, "Maria", "Gomez", 54321, "E12345");
+        estudiante.consultarinfoPersonal();
+
+        Administrativo administrativo = new Administrativo(3, 1, "Pedro", "Lopez", 98765, 2500);
+        administrativo.consultarinfoPersonal();
+    }
+}
